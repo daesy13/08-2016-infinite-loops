@@ -7,9 +7,31 @@ var loop = function(collection, callback){
       callback(collection[i]);
     }
 };
+var testVowel = function(char){
+	var vowels = ['a','e','i','o','u'];
+	loop(vowels, function(element){
+		if (vowels.indexOf(element)!== -1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	});
+};
 
 // 1. countVowels
-
+var countVowels = function(myString){
+	var vowelCounter = 0
+	var arry=myString.split();
+	loop(arry, function(letter){
+		if (testVowel(letter) === true){
+			vowelCounter = vowelCounter+1;
+	};
+	console.log(vowelCounter);
+	return vowelCounter;
+});
+}
+console.log(countVowels('apples'));
 // 2. stringReversal
 
 // 3. isPalindrome
