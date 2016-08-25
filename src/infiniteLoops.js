@@ -9,7 +9,7 @@ var loop = function(collection, callback){
     }
   } else if (typeof collection === 'object'){
     for (var key in collection){
-      callback(collection[key]);
+      callback(collection[key], key);
     }
   }
 };
@@ -123,11 +123,49 @@ console.log(capitalizeFirstLetters('hey how are you?'));
 
 // 8. collectValues 
 
-var collectValues
+var collectValues = function (anObject){
+	var valuesArray = [];
+	loop(anObject, function(thing){
+		valuesArray.push(thing);
+	});
+	return valuesArray;
+};
+var obj = {name: 'Albrey', favoriteMovie: 'Inception'};
+
+var listOfValues = collectValues(obj);
+
+console.log(listOfValues) // ['Albrey', 'Inception'];
 
 // 9. containsValue 
+var containsValue = function (anObject, target){
+	var test = false;
+	loop (anObject, function(value){
+		if (value === target){
+			test = true;
+		};
+	});
+	return test;
+};
+
+var obj = {name: 'Albrey', favoriteMovie: 'Inception'};
+
+var targetTest = containsValue(obj, 'Albrey');
+
+console.log(targetTest) // true
 
 // 10. copyObj
+var copyObj = function (obj){
+	var newObj = {};
+	loop (obj, function(value, key){
+		newObj[key] = value;
+	})
+	return newObj;
+}
+var obj = {name: 'Albrey', favoriteMovie: 'Inception'};
+
+var copyOfObj = copyObj(obj);
+
+console.log(copyOfObj) // {name: 'Albrey', favoriteMovie: 'Inception'};
 
 // 11. extendObj 
 
