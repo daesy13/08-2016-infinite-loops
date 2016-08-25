@@ -5,7 +5,7 @@ var loop = function(collection, callback){
 
   if (Array.isArray(collection)){
     for (var i = 0; i < collection.length; i++){
-      callback(collection[i]);
+      callback(collection[i],i);
     }
   } else if (typeof collection === 'object'){
     for (var key in collection){
@@ -169,8 +169,28 @@ console.log(copyOfObj) // {name: 'Albrey', favoriteMovie: 'Inception'};
 
 // 11. extendObj 
 
+var extendObj = function(objOne,objTwo){
+	loop(objTwo, function(value, key){
+		objOne[key] = value;
+	});
+	return objOne;
+};
+  var objOne = {name: 'Albrey', favoriteMovie: 'Inception'};
+  var objTwo = {favoriteColor: 'Blue', hungry: true}
+
+  extendObj(objOne, objTwo);
+
+  console.log(objOne) // {name: 'Albrey', favoriteMovie: 'Inception', favoriteColor: 'Blue', hungry: true};
+
+
 // 12. swapShuffle 
 
+var exampleArray = ['a','q','b','x','m'];
+
+var swapShuffle = function(anArray){
+
+
+};
 
 var sampleCarList = helpers.carFactory(helpers.carDatabase, helpers.carMaker, 100);
 console.dir(sampleCarList);
